@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 THIS_DIR=$(cd $(dirname $0); pwd)
 cd $THIS_DIR
 
 install() {
-	    cd tg
+	    cd td
 		sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 		sudo apt-get install g++-4.7 -y c++-4.7 -y
 		sudo apt-get update
@@ -15,16 +15,14 @@ install() {
 		sudo apt-get install libstdc++6 -y
 		sudo apt-get install lua-lgi -y
 		sudo apt-get install libnotify-dev -y
-		sudo service redis-server restart
-		wget https://valtman.name/files/telegram-cli-1222
-		mv telegram-cli-1222 tgcli
-		chmod +x tgcli
+		wget https://valtman.name/files/telegram-bot-180116-nightly-linux
+		mv telegram-bot-180116-nightly-linux tdbot
+		chmod +x tdbot
 		cd ..
 		chmod +x bot
-		chmod +x tg
+		chmod +x td
 		chmod +x autobd.sh
 }
-
 function print_logo() {
 	green "          ____  ____     _____"
 	green "         |  _ )|  _ \   |_   _|___ ____   __  __"
@@ -51,18 +49,6 @@ function logo_play() {
     printf "\n"
 	echo -e "\e[0m"
 }
-
-function beyondteam() {
-	echo -e "\e[0m"
-	green "     >>>>                       We Are Not Attacker                             "
-	green "     >>>>                       We Are Not Alliance                             "
-	white "     >>>>                       We Are Programmer                               "
-	white "     >>>>                       We Are The Best                                 "
-	red   "     >>>>                       We Are Family                                   "
-	red   "     >>>>                       @BeyondTeam                                     "
-	echo -e "\e[0m"
-}
-
 red() {
   printf '\e[1;31m%s\n\e[0;39;49m' "$@"
 }
@@ -75,22 +61,63 @@ white() {
 update() {
 	git pull
 }
+deltgbot() {
+ rm -rf $HOME/.telegram-bot
+}
+ config() {
+mkdir $HOME/.telegram-bot; cat <<EOF > $HOME/.telegram-bot/config
+default_profile = "cli";
+cli = {
+lua_script = "$HOME/BDSelf/bot/bot.lua";
+};
+EOF
+printf "\nConfig Has Been Saved.\n"
+}
+beyond() {
+./td/tdbot | grep -v "{"
+}
 
-if [ "$1" = "install" ]; then
-	print_logo
-	beyondteam
-	logo_play
-	install
-  else
-if [ ! -f ./tg/tgcli ]; then
-    echo "tg not found"
-    echo "Run $0 install"
-    exit 1
- fi
-	print_logo
-	beyondteam
-	logo_play
-   #sudo service redis-server restart
-   ./tg/tgcli -s ./bot/bot.lua -l 1 -E $@
-   #./tg/tgcli -s ./bot/bot.lua $@
-fi
+beyondcli() {
+./td/tdbot -p cli --login --phone=${1}
+} 
+
+case $1 in
+config)
+print_logo
+printf "Please wait...\n"
+config ${2}
+exit ;;
+
+logcli)
+print_logo
+echo "Please Insert Your Phone Number..."
+read phone_number
+beyondcli ${phone_number}
+echo 'Your Cli Bot Loged In Successfully.'
+exit;;
+
+install)
+print_logo
+logo_play
+install
+exit;;
+
+bd)
+printf "New BDSelf Bot is Launching...\n"
+print_logo
+logo_play
+beyond
+exit;;
+
+reset)
+print_logo
+printf "Please wait for delete telegram-bot...\n"
+deltgbot
+sleep 1
+echo '.telegram-bot Deleted Successfully.'
+exit;;
+
+esac
+
+exit 0
+ 

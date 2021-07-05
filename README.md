@@ -38,7 +38,7 @@ cd $HOME && git clone https://github.com/BeyondTeam/BDSelf.git && cd BDSelf && c
 
 Open ./bot/bot.lua and add your ID to the "sudo_users" section in the following format:
 ```
-    sudo_users = {157059515, YourID}
+    sudo_users = {189468140, YourID}
 ```
 add your ID at line 131 in bot.lua
 Then restart Bot.
@@ -49,9 +49,9 @@ Then restart Bot.
 
 [SoLiD](https://github.com/solid021) ([Telegram](https://telegram.me/SoLiD))
 
-[ToOfan](https://github.com/To0fan) ([Telegram](https://telegram.me/ToOfan))
+[TACKPAR770](https://github.com/TACKPAR770) ([Telegram](https://telegram.me/TACKPAR770))
 
-[MAKAN](https://github.com/makanj) ([Telegram](https://telegram.me/MAKAN))
+[TG_00TG](https://github.com/makanj) ([Telegram](https://telegram.me/TG_00TG))
 
 # Special thanks to
 [rizaumami](https://github.com/rizaumami) ([Telegram](https://telegram.me/kuncen))
@@ -62,8 +62,8 @@ Then restart Bot.
 
 # Support and development
 
-More information [Beyond Development](https://telegram.me/joinchat/AAAAAD9JFZlMveUl8q99gA)
+More information [Beyond Development](https://t.me/joinchat/AAAAAEBwjBZj8MuQR89I3Q)
 
 ### Our Telegram channel:
 
-[@BeyondTeam](https://telegram.me/BeyondTeam)
+[@BDREBORNTG](https://telegram.me/BDREBORNTG)
